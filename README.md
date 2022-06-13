@@ -22,3 +22,26 @@ AVAudioPlayer를 사용하면 오디오 파일을 재생, 일시 정지, 볼륨�
 ![스크린샷 2022-05-20 오후 4 42 57](https://user-images.githubusercontent.com/106981296/173381479-54817f9b-0077-41e9-9a99-09aab7b471e0.png)
 
 ---
+## 주요 코드 해석
+
+```SWIFT
+// 오디오를 재생하기 위해 헤더파일과 델리게이트가 필요하므로 'AVFoundation'을 불러오고, 'AVAudioPlayerDelegate'선언을 추가합니다.
+import UIKit
+import AVFoundation
+
+class ViewController: UIViewController, AVAudioPlayerDelegat{}
+```
+
+클래스에서 사용할 변수와 상수를 선언합니다.
+```SWIFT
+// AVAudioPlayer 인스턴트 변수
+var audioPlayer : AVAudioPlayer!
+
+// 재생할 오디오의 파일명 변수
+var audioFile : URL!
+
+// 최대 볼륨, 실수형 상수
+let MAX_VOLUME : Float = 10.0
+
+// 타이머를 위한 변수
+var progressTimer : Timer!
