@@ -121,3 +121,18 @@ func selectAudioFile(){
 if !isRecordMode
 }
 ```
+
+
+녹음 음질, 오디오 채널, 샘플률 설정하기
+```SWIFT
+AVEncoderBitRateKey : 320000,
+AVNumberOfChannelsKey : 2,
+AVSampleRateKey : 441000.0
+```
+
+updateRecordTime 함수를 생성합니다. 타이머에 의해 0.1초 간격으로 이 함수를 실행하는데, 그 때마다 녹음 시간이 표시됩니다.
+```SWIFT
+@objc func updateRecordTime(){
+lblRecordTime.text = convertNSTimeInterval2String(audioRecorder.currentTime)
+}
+```
