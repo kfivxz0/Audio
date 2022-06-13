@@ -88,7 +88,7 @@ lblEndTime.text = convertNSTimeInterval2String(audioPlayer.duration)
 lblCurrentTime.text = convertNSTimeInterval2String(0)
 ```
 
-재생, 일시 정지, 정지 버튼 제어하기
+재생, 일시 정지, 정지 버튼을 제어합니다.
 ```SWIFT
 // 재생, 일시 정지, 정지 버튼의 동작 여부를 설정하는 함수를 추가한다.
 func setPlayButtons(_ play:Bool, pause:Bool, stop:Bool){
@@ -123,7 +123,7 @@ if !isRecordMode
 ```
 
 
-녹음 음질, 오디오 채널, 샘플률 설정하기
+녹음 음질, 오디오 채널, 샘플률을 설정합니다.
 ```SWIFT
 AVEncoderBitRateKey : 320000,
 AVNumberOfChannelsKey : 2,
