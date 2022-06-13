@@ -45,3 +45,79 @@ let MAX_VOLUME : Float = 10.0
 
 // 타이머를 위한 변수
 var progressTimer : Timer!
+```
+
+오디오 파일을 추가한 뒤 audioFile의 변수로 설정합니다.
+```SWIFT
+audioFile = Bundle.main.url(forResource: "Sicilian_Breeze", withExtension: "mp3")
+```
+
+
+오디오 재생을 위한 초기화하기 위해 함수를 추가합니다.
+```SWIFT
+func initPlay(){}
+
+//do-try-catch문을 사용해 오디오파일이 없을 때에 대비합니다.
+do{
+    audioPlayer = try AVAudioPlayer(contentsOf: audioFile
+    }catch let error as NSError{
+      print("Error-initPlay : \(error)")
+    }
+}
+```
+
+재생 시간 초기화하기
+```SWIFT
+// "00:00"형태로 바꾸기위해 TimeInterval 값을 받아 문자열로 돌려보내는 함수를 생성합니다.
+func convertNSTimeInterval2String(_ time:TimeInterval) -> String{}
+
+//time 값을 60으로 나눈 몫을 정수 값으로 변환해 상수 min 값에 초기화합니다.
+let min = Int(time/60)
+
+//time 값을 60으로 나눈 나머지 값을 정수 값으로 변환해 상수 sec 값에 초기화 합니다.
+let sec = Int(time.truncatingRemainder(dividingBy: 60))
+
+//이 두 값을 활용해 %02d:%02d 형태의 문자열로 변환하여 strTime에 초기화합니다.
+let strTime = String(format: "%02d:%02d", min, sec)
+```
+
+
+```SWIFT
+//재생 시간을 lblEndTime의 텍스트에 출력하고, lblCurrentTime에는 00:00가 출력 되도록 0의 값을 입력합니다.
+lblEndTime.text = convertNSTimeInterval2String(audioPlayer.duration)
+lblCurrentTime.text = convertNSTimeInterval2String(0)
+```
+
+재생, 일시 정지, 정지 버튼 제어하기
+```SWIFT
+// 재생, 일시 정지, 정지 버튼의 동작 여부를 설정하는 함수를 추가한다.
+func setPlayButtons(_ play:Bool, pause:Bool, stop:Bool){
+btnPlay.isEnabled = play
+btnPause.isEnabled = pause
+btnStop.isEnabled = stop
+}
+```
+
+재생이 끝나면 초기 상태로 돌아가도록 함수를 추가합니다.
+```SWIFT
+// 타이머를 무효화합니다.
+func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
+progressTimer.invalidate()
+//재생 버튼은 활성화하고 나머지 버튼은 비활성화합니다.
+setPlayButtons(true, pause: false, stop: false)
+}
+```
+
+녹음을 위한 상수와 변수를 선언합니다.
+```SWIFT
+var audioRecorder : AVAudioRecorder !
+var isRecordMode = false
+```
+
+```SWIFT
+//녹음을 했는데 재생 파일에 겹쳐서 저장되면 안되기 때문에 모드에 따라 다른 파일을 선택하기 위해 함수를 추가합니다.
+// audioFile은 재생할 때, 즉 녹음 모드가 아닐 때 사용하므로 if문에 넣습니다.
+func selectAudioFile(){
+if !isRecordMode
+}
+```
