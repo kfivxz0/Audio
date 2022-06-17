@@ -136,3 +136,6 @@ updateRecordTime 함수를 생성합니다. 타이머에 의해 0.1초 간격으
 lblRecordTime.text = convertNSTimeInterval2String(audioRecorder.currentTime)
 }
 ```
+
+---
+출처: Do it! 스위프트로 아이폰 앱 만들기 입문
